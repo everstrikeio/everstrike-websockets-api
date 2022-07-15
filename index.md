@@ -275,9 +275,9 @@ You can be subscribed to a maximum of 10 **public** categories per client, and a
 
 If you must subscribe to more than 10 public categories, it is recommended that you use multiple connections.
 
-You can maintain a maximum of 10 concurrent connections per account and per IP.
+You can maintain a maximum of 20 concurrent connections per account and per IP.
 
-You can send a maximum of 20 messages per seconds per account and per IP.
+You can send a maximum of 15 messages per seconds per account and per IP.
 
 ## Trading pairs
 
@@ -295,7 +295,6 @@ Examples:
 **USD_ETH_PERP**,
 **USD_ADA_PERP**,
 **USD_BTC_PERP**,
-**ETH_USD_PERP**,
 
 ## Message Examples
 
@@ -304,7 +303,7 @@ Subscribing to trade updates for the Ethereum perpetual future:
 ```
    {
      op: "sub",
-     content: "ETH_USD_PERP:trades"
+     content: "USD_ETH_PERP:trades"
    }
 ```
 
