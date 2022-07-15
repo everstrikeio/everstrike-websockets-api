@@ -248,7 +248,7 @@ When **op** is **sub_pair**, *content* must contain a valid trading pair, such a
 
 When **op** is **auth_api**, *content* must contain a valid API key.
 
-When **op** is **sub**, content must contain a valid trading pair, concatenated by a category. Example: **USD_BTC_PERP:ticker**.
+When **op** is **sub**, *content* must contain a valid trading pair, concatenated by a category. Example: **USD_BTC_PERP:ticker**.
 
 When **op** is something else, *content* can be anything, as long as it's not empty.
 
