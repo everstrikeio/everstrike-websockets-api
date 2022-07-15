@@ -4,6 +4,10 @@ To use the API, you may connect your program to the following endpoint:
 
 **wss://wss.coincabin.io**
 
+Testnet endpoint:
+
+**wss://wss.testnet.coincabin.io**
+
 Once connected, you can subscribe to a specific trading pair (such as the BTC perpetual future).
 
 Then you'll receive all updates about that trading pair automatically.
