@@ -29,7 +29,7 @@ async def hello():
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
-        await websocket.send(json.dumps({"op": "sub_pair", "content": "BTC_USD_PERP"}))
+        await websocket.send(json.dumps({"op": "sub_pair", "content": "USD_BTC_PERP"}))
 
         #  OPTIONAL: Let's also authenticate, so we can receive personal updates about our trades and orders
         await websocket.send(json.dumps({"op": "auth_api", "content": API_KEY}))
@@ -77,11 +77,11 @@ To subscribe to a trading pair, you must send a JSON message in the following fo
 ```
    {
      op: "sub_pair",
-     content: "BTC_USD_PERP"
+     content: "USD_BTC_PERP"
    }
 ```
 
-This message subscribes to all updates about the **BTC/USD perpetual future** (BTC_USD_PERP).
+This message subscribes to all updates about the **BTC/USD perpetual future** (USD_BTC_PERP).
 
 Once you have subscribed to a specific trading pair, you will automatically receive all updates about that pair (including order book changes, ticker changes, candlestick changes, trades and liquidations).
 
@@ -90,7 +90,7 @@ To subscribe only to ticker updates:
 ```
    {
      op: "sub",
-     content: "BTC_USD_PERP:ticker"
+     content: "USD_BTC_PERP:ticker"
    }
 ```
 
@@ -99,7 +99,7 @@ To unsubscribe from ticker updates:
 ```
    {
      op: "unsub",
-     content: "BTC_USD_PERP:ticker"
+     content: "USD_BTC_PERP:ticker"
    }
 ```
 
@@ -108,11 +108,11 @@ To unsubscribe from order book updates:
 ```
    {
      op: "unsub",
-     content: "BTC_USD_PERP:depth"
+     content: "USD_BTC_PERP:depth"
    }
 ```
 
-You may replace **BTC_USD_PERP** with a trading pair of your interest. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
+You may replace **USD_BTC_PERP** with a trading pair of your interest. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
 
 You may also replace **ticker** with a category of your interest. For a list of valid categories, see [Categories](#categories).
 
@@ -132,13 +132,13 @@ Example result:
   code: 200,
   msg: 'subscriptions',
   result: [
-    'BTC_USD_PERP:liquidation',
-    'BTC_USD_PERP:index',
-    'BTC_USD_PERP:ohlcv',
-    'BTC_USD_PERP:match',
-    'BTC_USD_PERP:trades',
-    'BTC_USD_PERP:depth',
-    'BTC_USD_PERP:ticker'
+    'USD_BTC_PERP:liquidation',
+    'USD_BTC_PERP:index',
+    'USD_BTC_PERP:ohlcv',
+    'USD_BTC_PERP:match',
+    'USD_BTC_PERP:trades',
+    'USD_BTC_PERP:depth',
+    'USD_BTC_PERP:ticker'
   ],
   pair: null,
   category: 'subscriptions'
@@ -156,7 +156,7 @@ Messages are returned in JSON format. Example:
      code: 200,
      msg: "Order book changed!",
      category: "depth",
-     pair: "BTC_USD_PERP",
+     pair: "USD_BTC_PERP",
      result: {
        bids: [{qty: 20, price: 90}],
        asks: [{qty: 10, price: 100}]
@@ -225,7 +225,7 @@ When sending a message, you must use the following format:
 ```
    {
      op: "sub",
-     content: "BTC_USD_PERP:ticker"
+     content: "USD_BTC_PERP:ticker"
    }
 ```
 
@@ -240,11 +240,11 @@ When sending a message, you must use the following format:
 * **auth_api** (Authenticate, using API key)
 * **status** (Get the status of your connection)
 
-When **op** is **sub_pair**, *content* must contain a valid trading pair, such as **BTC_USD_PERP**. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
+When **op** is **sub_pair**, *content* must contain a valid trading pair, such as **USD_BTC_PERP**. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
 
 When **op** is **auth_api**, *content* must contain a valid API key.
 
-When **op** is **sub**, **content** must contain a valid trading pair, concatenated by a category. Example: **BTC_USD_PERP:ticker**.
+When **op** is **sub**, **content** must contain a valid trading pair, concatenated by a category. Example: **USD_BTC_PERP:ticker**.
 
 When **op** is something else, *content* can be anything, as long as it's not empty.
 
@@ -279,9 +279,9 @@ You can send a maximum of 20 messages per seconds per account and per IP.
 
 Trading pairs must be specified with their programmatic name.
 
-For the BTC/USD perpetual future, that is BTC_USD_PERP.
+For the BTC/USD perpetual future, that is USD_BTC_PERP.
 
-For the BTC/ALTS perpetual future, that is BTC_ALTS_PERP.
+For the ETH/USD perpetual future, that is USD_ETH_PERP.
 
 The programmatic name can be retrieved from the contract specification on Coincabin.io, or through https://api.coincabin.io/pairs.
 
@@ -290,7 +290,7 @@ Examples:
 **USD_BTC_PERP**,
 **USD_ETH_PERP**,
 **USD_ADA_PERP**,
-**BTC_USD_PERP**,
+**USD_BTC_PERP**,
 **ETH_USD_PERP**,
 
 ## Message Examples
@@ -304,13 +304,13 @@ Subscribing to trade updates for the Ethereum perpetual future:
    }
 ```
 
-Unsubscribing from liquidation updates for the BTC/ALTS perpetual future:
+Unsubscribing from liquidation updates for the ETH/USD perpetual future:
 
 
 ```
    {
      op: "unsub",
-     content: "BTC_ALTS_PERP:liquidation"
+     content: "USD_ETH_PERP:liquidation"
    }
 ```
 
@@ -338,7 +338,7 @@ Unsubscribing from everything related to the BTC/USD perpetual future:
 ```
    {
      op: "unsub_pair",
-     content: "BTC_USD_PERP"
+     content: "USD_BTC_PERP"
    }
 ```
 
@@ -358,7 +358,7 @@ const API_KEY = 'YOUR_API_KEY';
 socket.on('open', () => {
     console.info('Yay, we are connected!');
     // Lets' receive updates about the BTC/USD perpetual!
-    socket.send(JSON.stringify({op: 'sub_pair', content: 'BTC_USD_PERP'}));
+    socket.send(JSON.stringify({op: 'sub_pair', content: 'USD_BTC_PERP'}));
     // OPTIONAL: Let's also receive personal updates about our account, orders and trades!
     socket.send(JSON.stringify({op: 'auth_api', content: API_KEY}));
     // Let's also send a ping every 5 seconds (helps keep the connection open)!
@@ -394,7 +394,7 @@ async def hello():
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
-        await websocket.send(json.dumps({"op": "sub_pair", "content": "BTC_USD_PERP"}))
+        await websocket.send(json.dumps({"op": "sub_pair", "content": "USD_BTC_PERP"}))
 
         #  OPTIONAL: Let's also authenticate, so we can receive personal updates about our trades and orders
         await websocket.send(json.dumps({"op": "auth_api", "content": API_KEY}))
