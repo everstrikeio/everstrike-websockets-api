@@ -1,8 +1,8 @@
-# Coincabin Websockets API
+# Scalpbase Websockets API
 
 To use the API, you may connect your program to the following endpoint:
 
-**wss://wss.coincabin.io**
+**wss://wss.scalpbase.com**
 
 Once connected, you can subscribe to a specific trading pair (such as the BTC perpetual future).
 
@@ -25,7 +25,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.coincabin.io"
+    uri = "wss://wss.scalpbase.com"
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
@@ -170,7 +170,7 @@ The **category** can be any of the following:
 
 * **depth** (Order book change)
 * **ticker** (Ticker change)
-* **index** (Coincabin Index and Mark Price change)
+* **index** (Scalpbase Index and Mark Price change)
 * **ohlcv** (New candle)
 * **match** (Orders were matched)
 * **trades** (New trades)
@@ -283,7 +283,7 @@ For the BTC/USD perpetual future, that is USD_BTC_PERP.
 
 For the ETH/USD perpetual future, that is USD_ETH_PERP.
 
-The programmatic name can be retrieved from the contract specification on Coincabin.io, or through https://api.coincabin.io/pairs.
+The programmatic name can be retrieved from the contract specification on Scalpbase.com, or through https://api.scalpbase.com/pairs.
 
 Examples:
 
@@ -352,7 +352,7 @@ Unsubscribing from everything related to the BTC/USD perpetual future:
 
 ```javascript
 const ws = require('ws');
-const socket = new ws('wss://wss.coincabin.io'); 
+const socket = new ws('wss://wss.scalpbase.com'); 
 const API_KEY = 'YOUR_API_KEY';
 
 socket.on('open', () => {
@@ -390,7 +390,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.coincabin.io"
+    uri = "wss://wss.scalpbase.com"
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
@@ -461,7 +461,7 @@ function handle_message(message) {
 
 * **depth** (Order book change) (Public)
 * **ticker** (Ticker change) (Public)
-* **index** (Coincabin Index and Mark Price change) (Public)
+* **index** (Scalpbase Index and Mark Price change) (Public)
 * **ohlcv** (New candle) (Public)
 * **match** (Orders were matched) (Public)
 * **trades** (New trades) (Public)
