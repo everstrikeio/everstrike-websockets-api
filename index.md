@@ -1,12 +1,8 @@
-# Coincabin Websockets API
+# Scalpbase Websockets API
 
 To use the API, you may connect your program to the following endpoint:
 
-**wss://wss.coincabin.io**
-
-Testnet endpoint:
-
-**wss://wss.testnet.coincabin.io**
+**wss://wss.scalpbase.com**
 
 Once connected, you can subscribe to a specific trading pair (such as the BTC perpetual future).
 
@@ -29,7 +25,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.coincabin.io"
+    uri = "wss://wss.scalpbase.com"
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
@@ -174,7 +170,7 @@ The **category** can be any of the following:
 
 * **depth** (Order book change)
 * **ticker** (Ticker change)
-* **index** (Coincabin Index and Mark Price change)
+* **index** (Scalpbase Index and Mark Price change)
 * **ohlcv** (New candle)
 * **match** (Orders were matched)
 * **trades** (New trades)
@@ -248,7 +244,7 @@ When **op** is **sub_pair**, *content* must contain a valid trading pair, such a
 
 When **op** is **auth_api**, *content* must contain a valid API key.
 
-When **op** is **sub**, *content* must contain a valid trading pair, concatenated by a category. Example: **USD_BTC_PERP:ticker**.
+When **op** is **sub**, **content** must contain a valid trading pair, concatenated by a category. Example: **USD_BTC_PERP:ticker**.
 
 When **op** is something else, *content* can be anything, as long as it's not empty.
 
@@ -275,9 +271,9 @@ You can be subscribed to a maximum of 10 **public** categories per client, and a
 
 If you must subscribe to more than 10 public categories, it is recommended that you use multiple connections.
 
-You can maintain a maximum of 20 concurrent connections per account and per IP.
+You can maintain a maximum of 10 concurrent connections per account and per IP.
 
-You can send a maximum of 15 messages per seconds per account and per IP.
+You can send a maximum of 20 messages per seconds per account and per IP.
 
 ## Trading pairs
 
@@ -287,7 +283,7 @@ For the BTC/USD perpetual future, that is USD_BTC_PERP.
 
 For the ETH/USD perpetual future, that is USD_ETH_PERP.
 
-The programmatic name can be retrieved from the contract specification on Coincabin.io, or through https://api.coincabin.io/pairs.
+The programmatic name can be retrieved from the contract specification on Scalpbase.com, or through https://api.scalpbase.com/pairs.
 
 Examples:
 
@@ -295,6 +291,7 @@ Examples:
 **USD_ETH_PERP**,
 **USD_ADA_PERP**,
 **USD_BTC_PERP**,
+**ETH_USD_PERP**,
 
 ## Message Examples
 
@@ -303,7 +300,7 @@ Subscribing to trade updates for the Ethereum perpetual future:
 ```
    {
      op: "sub",
-     content: "USD_ETH_PERP:trades"
+     content: "ETH_USD_PERP:trades"
    }
 ```
 
@@ -355,7 +352,7 @@ Unsubscribing from everything related to the BTC/USD perpetual future:
 
 ```javascript
 const ws = require('ws');
-const socket = new ws('wss://wss.coincabin.io'); 
+const socket = new ws('wss://wss.scalpbase.com'); 
 const API_KEY = 'YOUR_API_KEY';
 
 socket.on('open', () => {
@@ -393,7 +390,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.coincabin.io"
+    uri = "wss://wss.scalpbase.com"
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
@@ -464,7 +461,7 @@ function handle_message(message) {
 
 * **depth** (Order book change) (Public)
 * **ticker** (Ticker change) (Public)
-* **index** (Coincabin Index and Mark Price change) (Public)
+* **index** (Scalpbase Index and Mark Price change) (Public)
 * **ohlcv** (New candle) (Public)
 * **match** (Orders were matched) (Public)
 * **trades** (New trades) (Public)
