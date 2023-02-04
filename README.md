@@ -283,7 +283,7 @@ For the BTC/USD perpetual future, that is USD_BTC_PERP.
 
 For the ETH/USD perpetual future, that is USD_ETH_PERP.
 
-The programmatic name can be retrieved from the contract specification on zarnu.com, or through https://api.everstrike.io/pairs.
+The programmatic name can be retrieved from the contract specification on everstrike.io, or through https://api.everstrike.io/pairs.
 
 Examples:
 
@@ -352,7 +352,7 @@ Unsubscribing from everything related to the BTC/USD perpetual future:
 
 ```javascript
 const ws = require('ws');
-const socket = new ws('wss://wss.zarnu.com'); 
+const socket = new ws('wss://wss.everstrike.io'); 
 const API_KEY = 'YOUR_API_KEY';
 
 socket.on('open', () => {
@@ -390,7 +390,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.zarnu.com"
+    uri = "wss://wss.everstrike.io"
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
@@ -461,7 +461,7 @@ function handle_message(message) {
 
 * **depth** (Order book change) (Public)
 * **ticker** (Ticker change) (Public)
-* **index** (Zarnu Index and Mark Price change) (Public)
+* **index** (Everstrike Index and Mark Price change) (Public)
 * **ohlcv** (New candle) (Public)
 * **match** (Orders were matched) (Public)
 * **trades** (New trades) (Public)
