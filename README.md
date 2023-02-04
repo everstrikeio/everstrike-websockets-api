@@ -1,8 +1,8 @@
-# Zarnu Websockets API
+# Everstrike Websockets API
 
 To use the API, you may connect your program to the following endpoint:
 
-**wss://wss.zarnu.com**
+**wss://wss.everstrike.io**
 
 Once connected, you can subscribe to a specific trading pair (such as the BTC perpetual future).
 
@@ -25,7 +25,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.zarnu.com"
+    uri = "wss://wss.everstrike.io"
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the BTC/USD perpetual future!
@@ -170,7 +170,7 @@ The **category** can be any of the following:
 
 * **depth** (Order book change)
 * **ticker** (Ticker change)
-* **index** (Zarnu Index and Mark Price change)
+* **index** (Everstrike Index and Mark Price change)
 * **ohlcv** (New candle)
 * **match** (Orders were matched)
 * **trades** (New trades)
@@ -283,7 +283,7 @@ For the BTC/USD perpetual future, that is USD_BTC_PERP.
 
 For the ETH/USD perpetual future, that is USD_ETH_PERP.
 
-The programmatic name can be retrieved from the contract specification on zarnu.com, or through https://api.zarnu.com/pairs.
+The programmatic name can be retrieved from the contract specification on zarnu.com, or through https://api.everstrike.io/pairs.
 
 Examples:
 
