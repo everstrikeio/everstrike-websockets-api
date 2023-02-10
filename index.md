@@ -4,7 +4,7 @@ To use the API, you may connect your program to the following endpoint:
 
 **wss://wss.everstrike.io**
 
-Once connected, you can subscribe to a specific trading pair (such as the BTC perpetual future).
+Once connected, you can subscribe to a specific trading pair.
 
 Then you'll receive all updates about that trading pair automatically.
 
@@ -28,14 +28,14 @@ async def hello():
     uri = "wss://wss.everstrike.io"
     async with websockets.connect(uri) as websocket:
 
-        # Let's receive updates about the BTC/USD perpetual future!
-        await websocket.send(json.dumps({"op": "sub_pair", "content": "USD_BTC_PERP"}))
+        # Let's receive updates about the default BTC call option (BTCCALL).
+        await websocket.send(json.dumps({"op": "sub_pair", "content": "USD_BTCCALL_PERP"}))
 
-        #  OPTIONAL: Let's also authenticate, so we can receive personal updates about our trades and orders
+        #  OPTIONAL: Let's also authenticate, so we can receive personal updates about our trades and orders.
         await websocket.send(json.dumps({"op": "auth_api", "content": API_KEY}))
 
         async for message in websocket:
-            parsed_message = json.loads(message) # Yay, we got a message! Let's parse it!
+            parsed_message = json.loads(message) # Yay, we got a message! Let's parse it.
             category = parsed_message['category'] # Can be one of the categories listed at the bottom of this document
             result = parsed_message['pair'] # Is the message related to a specific trading pair?
             msg = parsed_message['msg'] # In case there is an error, this will contain the error message
@@ -77,11 +77,11 @@ To subscribe to a trading pair, you must send a JSON message in the following fo
 ```
    {
      op: "sub_pair",
-     content: "USD_BTC_PERP"
+     content: "USD_BTCCALL_PERP"
    }
 ```
 
-This message subscribes to all updates about the **BTC/USD perpetual future** (USD_BTC_PERP).
+This message subscribes to all updates about the **default BTC call option** (USD_BTCCALL_PERP).
 
 Once you have subscribed to a specific trading pair, you will automatically receive all updates about that pair (including order book changes, ticker changes, candlestick changes, trades and liquidations).
 
@@ -90,7 +90,7 @@ To subscribe only to ticker updates:
 ```
    {
      op: "sub",
-     content: "USD_BTC_PERP:ticker"
+     content: "USD_BTCCALL_PERP:ticker"
    }
 ```
 
@@ -99,7 +99,7 @@ To unsubscribe from ticker updates:
 ```
    {
      op: "unsub",
-     content: "USD_BTC_PERP:ticker"
+     content: "USD_BTCCALL_PERP:ticker"
    }
 ```
 
@@ -108,11 +108,11 @@ To unsubscribe from order book updates:
 ```
    {
      op: "unsub",
-     content: "USD_BTC_PERP:depth"
+     content: "USD_BTCCALL_PERP:depth"
    }
 ```
 
-You may replace **USD_BTC_PERP** with a trading pair of your interest. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
+You may replace **USD_BTCCALL_PERP** with a trading pair of your interest. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
 
 You may also replace **ticker** with a category of your interest. For a list of valid categories, see [Categories](#categories).
 
@@ -132,13 +132,13 @@ Example result:
   code: 200,
   msg: 'subscriptions',
   result: [
-    'USD_BTC_PERP:liquidation',
-    'USD_BTC_PERP:index',
-    'USD_BTC_PERP:ohlcv',
-    'USD_BTC_PERP:match',
-    'USD_BTC_PERP:trades',
-    'USD_BTC_PERP:depth',
-    'USD_BTC_PERP:ticker'
+    'USD_BTCCALL_PERP:liquidation',
+    'USD_BTCCALL_PERP:index',
+    'USD_BTCCALL_PERP:ohlcv',
+    'USD_BTCCALL_PERP:match',
+    'USD_BTCCALL_PERP:trades',
+    'USD_BTCCALL_PERP:depth',
+    'USD_BTCCALL_PERP:ticker'
   ],
   pair: null,
   category: 'subscriptions'
@@ -156,7 +156,7 @@ Messages are returned in JSON format. Example:
      code: 200,
      msg: "Order book changed!",
      category: "depth",
-     pair: "USD_BTC_PERP",
+     pair: "USD_BTCCALL_PERP",
      result: {
        bids: [{qty: 20, price: 90}],
        asks: [{qty: 10, price: 100}]
@@ -225,7 +225,7 @@ When sending a message, you must use the following format:
 ```
    {
      op: "sub",
-     content: "USD_BTC_PERP:ticker"
+     content: "USD_BTCCALL_PERP:ticker"
    }
 ```
 
@@ -240,11 +240,11 @@ When sending a message, you must use the following format:
 * **auth_api** (Authenticate, using API key)
 * **status** (Get the status of your connection)
 
-When **op** is **sub_pair**, *content* must contain a valid trading pair, such as **USD_BTC_PERP**. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
+When **op** is **sub_pair**, *content* must contain a valid trading pair, such as **USD_BTCCALL_PERP**. For a list of valid trading pairs, see [Trading Pairs](#trading-pairs).
 
 When **op** is **auth_api**, *content* must contain a valid API key.
 
-When **op** is **sub**, **content** must contain a valid trading pair, concatenated by a category. Example: **USD_BTC_PERP:ticker**.
+When **op** is **sub**, **content** must contain a valid trading pair, concatenated by a category. Example: **USD_BTCCALL_PERP:ticker**.
 
 When **op** is something else, *content* can be anything, as long as it's not empty.
 
@@ -279,38 +279,39 @@ You can send a maximum of 20 messages per seconds per account and per IP.
 
 Trading pairs must be specified with their programmatic name.
 
-For the BTC/USD perpetual future, that is USD_BTC_PERP.
+For the default BTC call option, that is USD_BTCCALL_PERP.
 
-For the ETH/USD perpetual future, that is USD_ETH_PERP.
+For the default BTC put option, that is USD_BTCPUT_PERP.
 
 The programmatic name can be retrieved from the contract specification on everstrike.io, or through https://api.everstrike.io/pairs.
 
 Examples:
 
-**USD_BTC_PERP**,
-**USD_ETH_PERP**,
-**USD_ADA_PERP**,
-**USD_BTC_PERP**,
-**ETH_USD_PERP**,
+**USD_BTCCALL_PERP**,
+**USD_BTCCALL10_PERP**,
+**USD_BTCCALL90_PERP**,
+**USD_ETHPUT_PERP**,
+**USD_ETHPUT10_PERP**,
+**USD_ETHPUT90_PERP**,
 
 ## Message Examples
 
-Subscribing to trade updates for the Ethereum perpetual future:
+Subscribing to trade updates for the default ETH put option:
 
 ```
    {
      op: "sub",
-     content: "ETH_USD_PERP:trades"
+     content: "USD_ETHPUT_PERP:trades"
    }
 ```
 
-Unsubscribing from liquidation updates for the ETH/USD perpetual future:
+Unsubscribing from liquidation updates for the default ETH call option:
 
 
 ```
    {
      op: "unsub",
-     content: "USD_ETH_PERP:liquidation"
+     content: "USD_ETHCALL_PERP:liquidation"
    }
 ```
 
@@ -333,12 +334,12 @@ Getting the list of current subscriptions:
    }
 ```
 
-Unsubscribing from everything related to the BTC/USD perpetual future:
+Unsubscribing from everything related to the default BTC call option:
 
 ```
    {
      op: "unsub_pair",
-     content: "USD_BTC_PERP"
+     content: "USD_BTCCALL_PERP"
    }
 ```
 
@@ -357,17 +358,17 @@ const API_KEY = 'YOUR_API_KEY';
 
 socket.on('open', () => {
     console.info('Yay, we are connected!');
-    // Lets' receive updates about the BTC/USD perpetual!
-    socket.send(JSON.stringify({op: 'sub_pair', content: 'USD_BTC_PERP'}));
-    // OPTIONAL: Let's also receive personal updates about our account, orders and trades!
+    // Let's receive updates about the default BTC call option (BTCCALL).
+    socket.send(JSON.stringify({op: 'sub_pair', content: 'USD_BTCCALL_PERP'}));
+    // OPTIONAL: Let's also receive personal updates about our account, orders and trades.
     socket.send(JSON.stringify({op: 'auth_api', content: API_KEY}));
-    // Let's also send a ping every 5 seconds (helps keep the connection open)!
+    // Let's also send a ping every 5 seconds (helps keep the connection open).
     setInterval(() => socket.send(JSON.stringify({op: 'status', content: 'ok'})), 5000);
     socket.on('message', function(json){
-      var message = JSON.parse(json); // Yay, we got a message! Let's parse it!
+      var message = JSON.parse(json); // Yay, we got a message! Let's parse it.
       var pair = message.pair; // Is the message related to a specific trading pair?
-      var category = message.category; // Can be one of the categories listed at the bottom of this document
-      var msg = message.msg; // In case there is an error, this will contain the error message
+      var category = message.category; // Can be one of the categories listed at the bottom of this document.
+      var msg = message.msg; // In case there is an error, this will contain the error message.
       console.info("Received message: ", message);
     });
 });
@@ -393,17 +394,17 @@ async def hello():
     uri = "wss://wss.everstrike.io"
     async with websockets.connect(uri) as websocket:
 
-        # Let's receive updates about the BTC/USD perpetual future!
-        await websocket.send(json.dumps({"op": "sub_pair", "content": "USD_BTC_PERP"}))
+       # Let's receive updates about the default BTC call option (BTCCALL).
+        await websocket.send(json.dumps({"op": "sub_pair", "content": "USD_BTCCALL_PERP"}))
 
-        #  OPTIONAL: Let's also authenticate, so we can receive personal updates about our trades and orders
+        #  OPTIONAL: Let's also authenticate, so we can receive personal updates about our trades and orders.
         await websocket.send(json.dumps({"op": "auth_api", "content": API_KEY}))
 
         async for message in websocket:
-            parsed_message = json.loads(message) # Yay, we got a message! Let's parse it!
-            category = parsed_message['category'] # Can be one of the categories listed at the bottom of this document
+            parsed_message = json.loads(message) # Yay, we got a message! Let's parse it.
+            category = parsed_message['category'] # Can be one of the categories listed at the bottom of this document.
             result = parsed_message['pair'] # Is the message related to a specific trading pair?
-            msg = parsed_message['msg'] # In case there is an error, this will contain the error message
+            msg = parsed_message['msg'] # In case there is an error, this will contain the error message.
             print(parsed_message)
 
 asyncio.get_event_loop().run_until_complete(hello())
