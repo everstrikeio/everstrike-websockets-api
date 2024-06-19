@@ -15,8 +15,17 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   color: #f79000 !important;
+   font-weight: 500 !important;
 }
 
 header {
   border-bottom: 1px dashed #f79000 !important;
+}
+
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+    color: #005cff;
+}
+
+.highlight .nt, .highlight .nn, .highlight .nc, .highlight .no {
+    color: #ff0000;
 }
