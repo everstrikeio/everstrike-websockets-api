@@ -1,6 +1,6 @@
 # Everstrike Websockets API
 
-Public API documentation for the Everstrike Websockets API.
+Public documentation for the Everstrike Websockets API.
 
 For information on how to use the Everstrike REST API, head over to https://docs.testnet.everstrike.io.
 
