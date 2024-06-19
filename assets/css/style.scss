@@ -3,6 +3,10 @@
 
 @import "{{ site.theme }}";
 
+body {
+   font-family: "Satoshi", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: #f79000 !important;
 }
