@@ -2,7 +2,7 @@
 
 Public API documentation for the Everstrike Websocket API.
 
-For information on how to use the Everstrike REST API, head over to https://docs.testnet.everstrike.io/.
+For information on how to use the Everstrike REST API, head over to https://docs.testnet.everstrike.io.
 
 To use the API, you may connect your program to one of the following endpoints:
 
