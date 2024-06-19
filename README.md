@@ -1,8 +1,10 @@
 # Everstrike Websockets API
 
-To use the API, you may connect your program to the following endpoint:
+To use the API, you may connect your program to one of the following endpoints:
 
-**wss://wss.everstrike.io**
+**wss://wss.testnet.everstrike.io** (Testnet)
+
+**wss://wss.everstrike.io** (Mainnet)
 
 Once connected, you can subscribe to a specific trading pair.
 
@@ -25,7 +27,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.everstrike.io"
+    uri = "wss://wss.testnet.everstrike.io"
     async with websockets.connect(uri) as websocket:
 
         # Let's receive updates about the default BTC call option (BTCCALL).
@@ -353,7 +355,7 @@ Unsubscribing from everything related to the default BTC call option:
 
 ```javascript
 const ws = require('ws');
-const socket = new ws('wss://wss.everstrike.io'); 
+const socket = new ws('wss://wss.testnet.everstrike.io'); 
 const API_KEY = 'YOUR_API_KEY';
 
 socket.on('open', () => {
@@ -391,7 +393,7 @@ import json
 API_KEY = "YOUR_API_KEY" # Leave this out if you just want public data
 
 async def hello():
-    uri = "wss://wss.everstrike.io"
+    uri = "wss://wss.testnet.everstrike.io"
     async with websockets.connect(uri) as websocket:
 
        # Let's receive updates about the default BTC call option (BTCCALL).
