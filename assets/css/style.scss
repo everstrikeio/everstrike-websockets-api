@@ -2,13 +2,14 @@
 ---
 
 @import "{{ site.theme }}";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 body {
    font-weight: 450;
 }
 
 body, body div, h1, h2, h3, h4, h5, h6 {
-   font-family: Satoshi, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
+   font-family: "Space Grotesk", Satoshi, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
    letter-spacing: 0.8px !important;
 }
 
