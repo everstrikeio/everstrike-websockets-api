@@ -2,7 +2,7 @@
 ---
 
 @import "{{ site.theme }}";
-/*@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 body {
    font-weight: 400;
@@ -18,32 +18,32 @@ strong {
 .highlight {
    /*background: rgb(33,18,43) !important;
    border-color: rgb(0,0,0) !important;*/
-   font-family: "Satoshi", "General Sans", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
+   font-family: "Inter", "General Sans", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
 }
 
 .highlight code, .highlight code span {
-   font-family: "Satoshi", "General Sans", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;  
+   font-family: "Inter", "General Sans", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;  
    letter-spacing: 1.0px !important;
 }
    
 
 body, body div, h1, h2, h3, h4, h5, h6 {
-   font-family: "Satoshi", "General Sans", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
+   font-family: "Inter", "General Sans", Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace !important;
    letter-spacing: 0.7px !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-   color: #f79000 !important;
+   color: #ff5a19 !important;
    font-weight: 600 !important;
 }
 
 a {
-  color: #f79000 !important;
+  color: #ff5a19 !important;
    font-weight: 500 !important;
 }
 
 header {
-  border-bottom: 1px dashed #f79000 !important;
+  border-bottom: 1px dashed #ff5a19 !important;
 }
 
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
